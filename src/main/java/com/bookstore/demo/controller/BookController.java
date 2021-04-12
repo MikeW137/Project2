@@ -54,8 +54,8 @@ public class BookController {
         System.out.println("calling updateBook ==>");
         return bookService.updateBook(bookId, bookObject);
     }
-    //end
 
+    //Deleting a book
     // http://localhost:9090/api/books/1
     @DeleteMapping("/books/{bookId}")
     public Optional<Book> deleteBook(@PathVariable(value = "bookId") Long bookId) {
@@ -63,18 +63,22 @@ public class BookController {
         return bookService.deleteBook(bookId);
     }
 
+    //Get Authors from Books
+    // http://localhost:9090/api/books/1/authors
     @GetMapping("/books/{bookId}/authors")
     public List<Author> getBookAuthors(@PathVariable Long bookId){
         System.out.println("calling getBookAuthors ==>");
         return bookService.getBookAuthors(bookId);
     }
 
+    //Add Book author in Books
     @PostMapping("/books/{bookId}/authors")
     public Author createBookAuthor(@PathVariable(value = "bookId") Long bookId, @RequestBody Author authorObject) {
         System.out.println("calling createCategoryRecipe ==>");
         return bookService.createBookAuthor(bookId, authorObject);
     }
 
+    //end
 }
 
 
