@@ -61,9 +61,6 @@ public class Book {
         this.description = description;
     }
 
-    public List<Author> getAuthorList() { return authorList; }
-
-    public void setAuthorList(List<Author> authorList) { this.authorList = authorList; }
 
     @Override
     public String toString() {
@@ -74,11 +71,15 @@ public class Book {
                 '}';
     }
 
-    public List<Genre> getGenreList() {
-        return genreList;
-    }
+    public List<Author> getAuthorList() { return authorList; }
 
-    public void setGenreList(List<Genre> genreList) {
-        this.genreList = genreList;
-    }
+    public void setAuthorList(List<Author> authorList) { this.authorList = authorList; }
+
+    public List<Genre> getGenreList() { return genreList; }
+
+    public void setGenreList(List<Genre> genreList) { this.genreList = genreList; }
+
+    public List<Publisher> getPublisherList() { return publisherList; }
+
+    public void setPublisherList(List<Publisher> publisherList) { this.publisherList = publisherList; }
 }
