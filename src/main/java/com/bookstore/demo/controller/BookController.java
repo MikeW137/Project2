@@ -84,7 +84,7 @@ public class BookController {
     @PutMapping("/books/{bookId}/authors/{authorId}")
     public Author updateBookAuthor(@PathVariable Long bookId, @PathVariable Long authorId, @RequestBody Author authorObject){
         System.out.println("calling updateBookAuthor ==>");
-        return categoryService.updateCategoryRecipe(categoryId, recipeId, recipeObject);
+        return bookService.updateBookAuthor(bookId, authorId, authorObject);
     }
     //end
 }
