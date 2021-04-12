@@ -123,7 +123,7 @@ public class BookController {
         return bookService.updateBookGenres(bookId, genreId, genreObject);
     }
 
-    @DeleteMapping("/books/{bookId}/genre/{genreId}")
+    @DeleteMapping("/books/{bookId}/genres/{genreId}")
     public ResponseEntity<HashMap> deleteBookGenre(@PathVariable(value = "bookId") Long bookId, @PathVariable(value = "genreId") Long genreId) {
         System.out.println("calling deleteBookGenre ==>");
         bookService.deleteBookGenre(bookId, genreId);
