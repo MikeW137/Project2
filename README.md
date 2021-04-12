@@ -1,7 +1,7 @@
 # Project 2
 
 ### ERD Diagram
-![image](https://user-images.githubusercontent.com/7227339/114408179-c7756700-9b6e-11eb-87e3-e1c02d1616a8.png)
+![image](https://user-images.githubusercontent.com/7227339/114466739-7c7b4400-9bae-11eb-8087-0e3f1b19379e.png)
 
 ### Endpoints
 | Endpoint | Functionality | Access |
