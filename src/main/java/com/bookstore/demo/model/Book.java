@@ -1,5 +1,6 @@
 package com.bookstore.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
@@ -17,6 +18,11 @@ public class Book {
     private String title;
     @Column
     private String description;
+
+    @JsonIgnore
+    @OneToOne
+    private Author author;
+
 
     public Book() {
     }
@@ -49,6 +55,14 @@ public class Book {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Author getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(Author author) {
+        this.author = author;
     }
 
     @Override

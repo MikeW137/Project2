@@ -2,6 +2,7 @@ package com.bookstore.demo.service;
 
 import com.bookstore.demo.exception.InformationExistException;
 import com.bookstore.demo.exception.InformationNotFoundException;
+import com.bookstore.demo.model.Author;
 import com.bookstore.demo.model.Book;
 import com.bookstore.demo.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,5 +68,13 @@ public class BookService {
         }
     }
 
-
+    public Author getBookAuthor(@PathVariable(value = "bookId") Long bookId) {
+        System.out.println("service calling getBookAuthor ==>");
+        Optional<Book> book = bookRepository.findById(bookId);
+            if (book.isPresent()) {
+                return book.get().getAuthor();
+            } else {
+                throw new InformationNotFoundException("book with id " + bookId + " not found");
+            }
+    }
 }
