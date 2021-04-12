@@ -205,6 +205,15 @@ public class BookService {
             throw new InformationNotFoundException("publisher or book not found");
         }
     }
+
+    public void deleteBookPublisher(Long bookId, Long publisherId) {
+        try {
+            Publisher publisher = (publisherRepository.findByBookId(bookId).stream().filter(p -> p.getId().equals(publisherId)).findFirst()).get();
+            publisherRepository.deleteById(publisher.getId());
+        } catch (NoSuchElementException e) {
+            throw new InformationNotFoundException("book or publisher not found");
+        }
+    }
 }
 
 
