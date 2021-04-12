@@ -6,6 +6,8 @@ import com.bookstore.demo.model.Book;
 import com.bookstore.demo.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 import java.util.Optional;
@@ -32,6 +34,24 @@ public class BookService {
             throw new InformationExistException("Book with title " + book.getTitle() + " already exists");
         } else {
             return bookRepository.save(bookObject);
+        }
+    }
+
+    public Book updateBook(@PathVariable(value = "bookId") Long bookId, @RequestBody Book bookObject) {
+        System.out.println("service calling updateBook ==>");
+        Optional<Book> book = bookRepository.findById(bookId);
+        if (book.isPresent()) {
+            if (bookObject.getTitle().equals(book.get().getTitle())) {
+                System.out.println("Same");
+                throw new InformationExistException("book " + book.get().getTitle() + " is already exists");
+            } else {
+                Book updateBook = bookRepository.findById(bookId).get();
+                updateBook.setTitle(bookObject.getTitle());
+                updateBook.setDescription(bookObject.getDescription());
+                return bookRepository.save(updateBook);
+            }
+        } else {
+            throw new InformationNotFoundException("book with id " + bookId + " not found");
         }
     }
 }

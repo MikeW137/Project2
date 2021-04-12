@@ -44,7 +44,13 @@ public class BookController {
         System.out.println("calling createBook ==>");
         return bookService.createBook(bookObject);
     }
-
+    //Updating a book
+    // http://localhost:9090/api/books/1
+    @PutMapping("/books/{bookId}")
+    public Book updateBook(@PathVariable(value = "bookId") Long bookId, @RequestBody Book bookObject) {
+        System.out.println("calling updateBook ==>");
+        return bookService.updateBook(bookId, bookObject);
+    }
     //end
 }
 
