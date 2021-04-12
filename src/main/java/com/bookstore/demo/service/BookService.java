@@ -119,4 +119,14 @@ public class BookService {
             throw new InformationNotFoundException("book or author not found");
         }
     }
+
+    public List<Author> getBookGenres(Long bookId) {
+        System.out.println("service calling getBookGenres ==>");
+        Optional<Book> book = bookRepository.findById(bookId);
+        if (book.isPresent()) {
+            return book.get().getAuthorList();
+        } else {
+            throw new InformationNotFoundException("book with an id " + bookId + " not found");
+        }
+    }
 }

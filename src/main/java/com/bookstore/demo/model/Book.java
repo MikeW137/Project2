@@ -23,6 +23,10 @@ public class Book {
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Author> authorList;
 
+    @OneToMany(mappedBy = "book", orphanRemoval = true)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<Genre> genreList;
+
 
     public Book() {
     }
@@ -68,5 +72,13 @@ public class Book {
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
                 '}';
+    }
+
+    public List<Genre> getGenreList() {
+        return genreList;
+    }
+
+    public void setGenreList(List<Genre> genreList) {
+        this.genreList = genreList;
     }
 }
