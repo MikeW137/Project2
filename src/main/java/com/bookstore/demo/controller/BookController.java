@@ -68,6 +68,13 @@ public class BookController {
         System.out.println("calling getCategoryRecipe ==>");
         return bookService.getBookAuthor(bookId);
     }
+
+    @PostMapping("/books/{bookId}/author")
+    public Author createBookAuthor(@PathVariable(value = "bookId") Long bookId, @RequestBody Author authorObject) {
+        System.out.println("calling createCategoryRecipe ==>");
+        return bookService.createBookAuthor(bookId, authorObject);
+    }
+
 }
 
 
