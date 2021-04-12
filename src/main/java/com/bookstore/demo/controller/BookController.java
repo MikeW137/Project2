@@ -163,8 +163,8 @@ public class BookController {
         return bookService.updateBookPublisher(bookId, publisherId, publisherObject);
     }
 
-    //Deleting a Genre in a Book
-    //http://localhost:9090/api/books/1/genres/1
+    //Deleting a Publisher in a Book
+    //http://localhost:9090/api/books/1/publisher/1
     @DeleteMapping("/books/{bookId}/publishers/{publisherId}")
     public ResponseEntity<HashMap> deleteBookPublisher(@PathVariable(value = "bookId") Long bookId, @PathVariable(value = "publisherId") Long publisherId) {
         System.out.println("calling deleteBookPublisher ==>");
