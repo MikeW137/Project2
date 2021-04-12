@@ -72,7 +72,7 @@ public class BookService {
     }
 
     public Optional<Book> deleteBook(@PathVariable(value = "bookId") Long bookId) {
-        System.out.println("service calling deleteCategory ==>");
+        System.out.println("service calling deleteBook ==>");
         Optional<Book> book = bookRepository.findById(bookId);
 
         if (book.isPresent()) {
