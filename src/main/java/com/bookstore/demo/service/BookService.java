@@ -194,4 +194,16 @@ public class BookService {
         }
     }
 
+    public Genre updateBookPublisher(@PathVariable Long bookId, @PathVariable Long pubisherId, @RequestBody Genre pubisherObject){
+        System.out.println("service calling updateBookPublishers ==>");
+        try {
+            Genre genre = (genreRepository.findByBookId(bookId).stream().filter(p -> p.getId().equals(genreId)).findFirst()).get();
+            genre.setName(genreObject.getName());
+            return genreRepository.save(genre);
+        } catch (NoSuchElementException e) {
+            throw new InformationNotFoundException("genre or book not found");
+        }
+    }
+    }
+
 }
