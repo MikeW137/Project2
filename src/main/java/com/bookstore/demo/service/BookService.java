@@ -157,4 +157,13 @@ public class BookService {
             throw new InformationNotFoundException("genre or book not found");
         }
     }
+
+    public void deleteBookGenre(Long bookId, Long genreId) {
+        try {
+            Genre genre = (genreRepository.findByBookId(bookId).stream().filter(p -> p.getId().equals(genreId)).findFirst()).get();
+            genreRepository.deleteById(genre.getId());
+        } catch (NoSuchElementException e) {
+            throw new InformationNotFoundException("book or genre not found");
+        }
+    }
 }
