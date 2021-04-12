@@ -4,6 +4,7 @@ import com.bookstore.demo.exception.InformationExistException;
 import com.bookstore.demo.exception.InformationNotFoundException;
 import com.bookstore.demo.model.Author;
 import com.bookstore.demo.model.Book;
+import com.bookstore.demo.model.Genre;
 import com.bookstore.demo.repository.AuthorRepository;
 import com.bookstore.demo.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -120,11 +121,11 @@ public class BookService {
         }
     }
 
-    public List<Author> getBookGenres(Long bookId) {
+    public List<Genre> getBookGenres(Long bookId) {
         System.out.println("service calling getBookGenres ==>");
         Optional<Book> book = bookRepository.findById(bookId);
         if (book.isPresent()) {
-            return book.get().getAuthorList();
+            return book.get().getGenreList();
         } else {
             throw new InformationNotFoundException("book with an id " + bookId + " not found");
         }
