@@ -1,6 +1,7 @@
 package com.bookstore.demo.controller;
 
 import com.bookstore.demo.exception.InformationNotFoundException;
+import com.bookstore.demo.model.Author;
 import com.bookstore.demo.model.Book;
 import com.bookstore.demo.repository.BookRepository;
 import com.bookstore.demo.service.BookService;
@@ -60,6 +61,12 @@ public class BookController {
     public Optional<Book> deleteBook(@PathVariable(value = "bookId") Long bookId) {
         System.out.println("calling deleteCategory ==>");
         return bookService.deleteBook(bookId);
+    }
+
+    @GetMapping("/books/{bookId}/author")
+    public Author getBookAuthor(@PathVariable(value = "bookId") Long bookId) {
+        System.out.println("calling getCategoryRecipe ==>");
+        return bookService.getBookAuthor(bookId);
     }
 }
 
