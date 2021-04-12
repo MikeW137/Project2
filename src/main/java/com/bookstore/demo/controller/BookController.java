@@ -1,5 +1,6 @@
 package com.bookstore.demo.controller;
 
+import com.bookstore.demo.exception.InformationNotFoundException;
 import com.bookstore.demo.model.Book;
 import com.bookstore.demo.repository.BookRepository;
 import com.bookstore.demo.service.BookService;
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "/api")
@@ -52,6 +54,13 @@ public class BookController {
         return bookService.updateBook(bookId, bookObject);
     }
     //end
+
+    // http://localhost:9090/api/books/1
+    @DeleteMapping("/books/{bookId}")
+    public Optional<Book> deleteBook(@PathVariable(value = "bookId") Long bookId) {
+        System.out.println("calling deleteCategory ==>");
+        return bookService.deleteBook(bookId);
+    }
 }
 
 
