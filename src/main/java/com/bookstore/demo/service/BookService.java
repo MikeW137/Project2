@@ -146,4 +146,15 @@ public class BookService {
             throw new InformationNotFoundException("book with id " + bookId + " not found");
         }
     }
+
+    public Genre updateBookGenres(@PathVariable Long bookId, @PathVariable Long genreId, @RequestBody Genre genreObject){
+        System.out.println("service calling updateBookGenres ==>");
+        try {
+            Genre genre = (genreRepository.findByBookId(bookId).stream().filter(p -> p.getId().equals(genreId)).findFirst()).get();
+            genre.setName(genreObject.getName());
+            return genreRepository.save(genre);
+        } catch (NoSuchElementException e) {
+            throw new InformationNotFoundException("genre or book not found");
+        }
+    }
 }

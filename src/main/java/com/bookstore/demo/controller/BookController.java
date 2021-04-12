@@ -117,6 +117,12 @@ public class BookController {
         return bookService.createBookGenre(bookId, genreObject);
     }
 
+    @PutMapping("/books/{bookId}/genres/{genreId}")
+    public Genre updateBookGenres(@PathVariable Long bookId, @PathVariable Long genreId, @RequestBody Genre genreObject){
+        System.out.println("calling updateBookGenre ==>");
+        return bookService.updateBookGenres(bookId, genreId, genreObject);
+    }
+
 }
 
 
