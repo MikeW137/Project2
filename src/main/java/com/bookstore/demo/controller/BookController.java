@@ -6,8 +6,11 @@ import com.bookstore.demo.model.Book;
 import com.bookstore.demo.repository.BookRepository;
 import com.bookstore.demo.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
@@ -85,6 +88,17 @@ public class BookController {
     public Author updateBookAuthor(@PathVariable Long bookId, @PathVariable Long authorId, @RequestBody Author authorObject){
         System.out.println("calling updateBookAuthor ==>");
         return bookService.updateBookAuthor(bookId, authorId, authorObject);
+    }
+
+    //Delete an Author
+    //http://localhost:9090/api/books/1/authors/1
+    @DeleteMapping("/books/{bookId}/authors/{authorId}")
+    public ResponseEntity<HashMap> deleteBookAuthor(@PathVariable(value = "bookId") Long bookId, @PathVariable(value = "authorId") Long authorId) {
+        System.out.println("calling deleteBookAuthor ==>");
+        bookService.deleteCategoryRecipe(categoryId, recipeId);
+        HashMap responseMessage = new HashMap();
+        responseMessage.put("status", "recipe with id: " + recipeId + " was successfully deleted.");
+        return new ResponseEntity<HashMap>(responseMessage, HttpStatus.OK);
     }
     //end
 }

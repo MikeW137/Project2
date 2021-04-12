@@ -110,4 +110,13 @@ public class BookService {
             throw new InformationNotFoundException("author or book not found");
         }
     }
+
+    public void deleteBookAuthor(Long bookId, Long authorId) {
+        try {
+            Author author = (authorRepository.findByBookId(bookId).stream().filter(p -> p.getId().equals(authorId)).findFirst()).get();
+            authorRepository.deleteById(author.getId());
+        } catch (NoSuchElementException e) {
+            throw new InformationNotFoundException("book or author not found");
+        }
+    }
 }
