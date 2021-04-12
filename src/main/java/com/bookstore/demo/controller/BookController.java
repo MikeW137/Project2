@@ -4,10 +4,7 @@ import com.bookstore.demo.model.Book;
 import com.bookstore.demo.repository.BookRepository;
 import com.bookstore.demo.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -34,12 +31,21 @@ public class BookController {
     }
 
     //Get all books
+    // http://localhost:9090/api/books/
     @GetMapping("/books")
     public List<Book> getBooks() {
-        System.out.println("calling getCategories ==>");
+        System.out.println("calling getBooks ==>");
         return bookService.getBooks();
     }
+    //Create a book
+    // http://localhost:9090/api/books/
+    @PostMapping(path = "/books")
+    public Book createBook(@RequestBody Book bookObject) {
+        System.out.println("calling createBook ==>");
+        return bookService.createBook(bookObject);
+    }
 
+    //end
 }
 
 

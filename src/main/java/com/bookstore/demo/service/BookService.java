@@ -1,5 +1,6 @@
 package com.bookstore.demo.service;
 
+import com.bookstore.demo.exception.InformationExistException;
 import com.bookstore.demo.exception.InformationNotFoundException;
 import com.bookstore.demo.model.Book;
 import com.bookstore.demo.repository.BookRepository;
@@ -23,13 +24,14 @@ public class BookService {
         return bookRepository.findAll();
     }
 
-//    public Optional getBook(Long bookId) {
-//        System.out.println("service calling getBook ==>");
-//        Optional book = bookRepository.findById(bookId);
-//        if (book.isPresent()) {
-//            return book;
-//        } else {
-//            throw new InformationNotFoundException("Book with id " + bookId + " not found");
-//        }
-//    }
+    public Book createBook(Book bookObject) {
+        System.out.println("service calling createBook ==>");
+
+        Book book = bookRepository.findByTitle(bookObject.getTitle());
+        if (book != null) {
+            throw new InformationExistException("Book with title " + book.getTitle() + " already exists");
+        } else {
+            return bookRepository.save(bookObject);
+        }
+    }
 }
