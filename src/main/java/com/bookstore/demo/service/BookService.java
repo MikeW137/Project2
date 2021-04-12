@@ -7,6 +7,7 @@ import com.bookstore.demo.model.Book;
 import com.bookstore.demo.model.Genre;
 import com.bookstore.demo.repository.AuthorRepository;
 import com.bookstore.demo.repository.BookRepository;
+import com.bookstore.demo.repository.GenreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +21,7 @@ import java.util.Optional;
 public class BookService {
     private BookRepository bookRepository;
     private AuthorRepository authorRepository;
+    private GenreRepository genreRepository;
 
     @Autowired
     public void setBookRepository(BookRepository bookRepository) {
@@ -30,6 +32,9 @@ public class BookService {
     public void setAuthorRepository(AuthorRepository authorRepository) {
         this.authorRepository = authorRepository;
     }
+
+    @Autowired
+    public void setGenreRepository(GenreRepository genreRepository) { this.genreRepository = genreRepository;}
 
 
     public List<Book> getBooks() {
@@ -131,12 +136,12 @@ public class BookService {
         }
     }
 
-    public Author createBookGenre(Long bookId, Genre genreObject) {
+    public Genre createBookGenre(Long bookId, Genre genreObject) {
         System.out.println("service calling create ==>");
         try {
             Optional book = bookRepository.findById(bookId);
-            authorObject.setBook((Book) book.get());
-            return authorRepository.save(authorObject);
+            genreObject.setBook((Book) book.get());
+            return genreRepository.save(genreObject);
         } catch (NoSuchElementException e) {
             throw new InformationNotFoundException("book with id " + bookId + " not found");
         }
