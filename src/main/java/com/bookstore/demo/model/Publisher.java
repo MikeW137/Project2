@@ -10,7 +10,7 @@ public class Publisher {
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @Column
     private String name;
@@ -25,18 +25,18 @@ public class Publisher {
     public Publisher() {
     }
 
-    public Publisher(long id, String name, String location, Book book) {
+    public Publisher(Long id, String name, String location, Book book) {
         this.id = id;
         this.name = name;
         this.location = location;
         this.book = book;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
