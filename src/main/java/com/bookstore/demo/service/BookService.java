@@ -180,4 +180,15 @@ public class BookService {
         }
     }
 
+    public Publisher createBookPublisher(Long bookId, Publisher publisherObject) {
+        System.out.println("service calling createBookPublisher ==>");
+        try {
+            Optional book = bookRepository.findById(bookId);
+            publisherObject.setBook((Book) book.get());
+            return publisherRepository.save(publisherObject);
+        } catch (NoSuchElementException e) {
+            throw new InformationNotFoundException("publisher with id " + bookId + " not found");
+        }
+    }
+
 }

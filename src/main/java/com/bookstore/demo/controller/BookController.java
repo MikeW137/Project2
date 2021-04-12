@@ -138,11 +138,23 @@ public class BookController {
         return new ResponseEntity<HashMap>(responseMessage, HttpStatus.OK);
     }
 
+    //Getting the Publishers in a Book
+    //http://localhost:9090/api/books/1/publishers
     @GetMapping("/books/{bookId}/publishers")
     public List<Publisher> getBookPublishers(@PathVariable Long bookId){
         System.out.println("calling getBookPublishers ==>");
-        return bookService.getBookGenres(bookId);
+        return bookService.getBookPublishers(bookId);
     }
+
+    //Adding a Publisher to a Book
+    //http://localhost:9090/api/books/1/publishers
+    @PostMapping("/books/{bookId}/publishers")
+    public Publisher createBookPublisher(@PathVariable(value = "bookId") Long bookId, @RequestBody Publisher publisherObject) {
+        System.out.println("calling createBookPublisher ==>");
+        return bookService.createBookGenre(bookId, publisherObject);
+    }
+
+
     //end
 }
 
