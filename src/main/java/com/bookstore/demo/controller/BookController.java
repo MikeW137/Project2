@@ -123,6 +123,15 @@ public class BookController {
         return bookService.updateBookGenres(bookId, genreId, genreObject);
     }
 
+    @DeleteMapping("/books/{bookId}/genre/{genreId}")
+    public ResponseEntity<HashMap> deleteBookGenre(@PathVariable(value = "bookId") Long bookId, @PathVariable(value = "genreId") Long genreId) {
+        System.out.println("calling deleteBookGenre ==>");
+        bookService.deleteBookGenre(bookId, genreId);
+        HashMap responseMessage = new HashMap();
+        responseMessage.put("status", "genre with id: " + genreId + " was successfully deleted.");
+        return new ResponseEntity<HashMap>(responseMessage, HttpStatus.OK);
+    }
+
 }
 
 
