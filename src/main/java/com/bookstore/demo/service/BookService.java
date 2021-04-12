@@ -5,9 +5,11 @@ import com.bookstore.demo.exception.InformationNotFoundException;
 import com.bookstore.demo.model.Author;
 import com.bookstore.demo.model.Book;
 import com.bookstore.demo.model.Genre;
+import com.bookstore.demo.model.Publisher;
 import com.bookstore.demo.repository.AuthorRepository;
 import com.bookstore.demo.repository.BookRepository;
 import com.bookstore.demo.repository.GenreRepository;
+import com.bookstore.demo.repository.PublisherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,6 +24,7 @@ public class BookService {
     private BookRepository bookRepository;
     private AuthorRepository authorRepository;
     private GenreRepository genreRepository;
+    private PublisherRepository publisherRepository;
 
     @Autowired
     public void setBookRepository(BookRepository bookRepository) {
@@ -166,4 +169,15 @@ public class BookService {
             throw new InformationNotFoundException("book or genre not found");
         }
     }
+
+    public List<Publisher> getBookPublishers(Long bookId) {
+        System.out.println("service calling getBookPublishers ==>");
+        Optional<Book> book = bookRepository.findById(bookId);
+        if (book.isPresent()) {
+            return book.get().getPublisherList();
+        } else {
+            throw new InformationNotFoundException("publisher with an id " + bookId + " not found");
+        }
+    }
+
 }

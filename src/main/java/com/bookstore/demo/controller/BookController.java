@@ -4,6 +4,7 @@ import com.bookstore.demo.exception.InformationNotFoundException;
 import com.bookstore.demo.model.Author;
 import com.bookstore.demo.model.Book;
 import com.bookstore.demo.model.Genre;
+import com.bookstore.demo.model.Publisher;
 import com.bookstore.demo.repository.BookRepository;
 import com.bookstore.demo.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -137,6 +138,11 @@ public class BookController {
         return new ResponseEntity<HashMap>(responseMessage, HttpStatus.OK);
     }
 
+    @GetMapping("/books/{bookId}/publishers")
+    public List<Publisher> getBookPublishers(@PathVariable Long bookId){
+        System.out.println("calling getBookPublishers ==>");
+        return bookService.getBookGenres(bookId);
+    }
     //end
 }
 
