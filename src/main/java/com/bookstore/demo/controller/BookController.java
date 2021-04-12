@@ -95,9 +95,9 @@ public class BookController {
     @DeleteMapping("/books/{bookId}/authors/{authorId}")
     public ResponseEntity<HashMap> deleteBookAuthor(@PathVariable(value = "bookId") Long bookId, @PathVariable(value = "authorId") Long authorId) {
         System.out.println("calling deleteBookAuthor ==>");
-        bookService.deleteCategoryRecipe(categoryId, recipeId);
+        bookService.deleteBookAuthor(bookId, authorId);
         HashMap responseMessage = new HashMap();
-        responseMessage.put("status", "recipe with id: " + recipeId + " was successfully deleted.");
+        responseMessage.put("status", "author with id: " + authorId + " was successfully deleted.");
         return new ResponseEntity<HashMap>(responseMessage, HttpStatus.OK);
     }
     //end
