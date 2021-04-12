@@ -78,6 +78,14 @@ public class BookController {
         return bookService.createBookAuthor(bookId, authorObject);
     }
 
+    //Updating an Author
+
+    //http://localhost:9090/api/books/1/authors/1
+    @PutMapping("/books/{bookId}/authors/{authorId}")
+    public Author updateBookAuthor(@PathVariable Long bookId, @PathVariable Long authorId, @RequestBody Author authorObject){
+        System.out.println("calling updateBookAuthor ==>");
+        return categoryService.updateCategoryRecipe(categoryId, recipeId, recipeObject);
+    }
     //end
 }
 
