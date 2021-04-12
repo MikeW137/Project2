@@ -89,7 +89,7 @@ public class BookService {
     }
 
     public Author createBookAuthor(Long bookId, Author authorObject) {
-        System.out.println("service calling createCategoryRecipe ==>");
+        System.out.println("service calling createBookAuthor ==>");
         try {
             Optional book = bookRepository.findById(bookId);
             authorObject.setBook((Book) book.get());
@@ -128,6 +128,17 @@ public class BookService {
             return book.get().getGenreList();
         } else {
             throw new InformationNotFoundException("book with an id " + bookId + " not found");
+        }
+    }
+
+    public Author createBookGenre(Long bookId, Genre genreObject) {
+        System.out.println("service calling create ==>");
+        try {
+            Optional book = bookRepository.findById(bookId);
+            authorObject.setBook((Book) book.get());
+            return authorRepository.save(authorObject);
+        } catch (NoSuchElementException e) {
+            throw new InformationNotFoundException("book with id " + bookId + " not found");
         }
     }
 }
