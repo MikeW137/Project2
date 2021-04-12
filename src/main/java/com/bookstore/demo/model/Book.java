@@ -19,9 +19,9 @@ public class Book {
     @Column
     private String description;
 
-    @JsonIgnore
-    @OneToOne
-    private Author author;
+    @OneToMany(mappedBy = "book", orphanRemoval = true)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<Author> authorList;
 
 
     public Book() {
@@ -57,13 +57,9 @@ public class Book {
         this.description = description;
     }
 
-    public Author getAuthor() {
-        return author;
-    }
+    public List<Author> getAuthorList() { return authorList; }
 
-    public void setAuthor(Author author) {
-        this.author = author;
-    }
+    public void setAuthorList(List<Author> authorList) { this.authorList = authorList; }
 
     @Override
     public String toString() {

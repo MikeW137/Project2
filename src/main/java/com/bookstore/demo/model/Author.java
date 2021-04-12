@@ -23,7 +23,7 @@ public class Author {
     private Integer age;
 
     @JsonIgnore
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "book_id")
     private Book book;
 

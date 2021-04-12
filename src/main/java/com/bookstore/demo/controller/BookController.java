@@ -63,13 +63,13 @@ public class BookController {
         return bookService.deleteBook(bookId);
     }
 
-    @GetMapping("/books/{bookId}/author")
-    public Author getBookAuthor(@PathVariable(value = "bookId") Long bookId) {
-        System.out.println("calling getCategoryRecipe ==>");
-        return bookService.getBookAuthor(bookId);
+    @GetMapping("/books/{bookId}/authors")
+    public List<Author> getBookAuthors(@PathVariable Long bookId){
+        System.out.println("calling getBookAuthors ==>");
+        return bookService.getBookAuthors(bookId);
     }
 
-    @PostMapping("/books/{bookId}/author")
+    @PostMapping("/books/{bookId}/authors")
     public Author createBookAuthor(@PathVariable(value = "bookId") Long bookId, @RequestBody Author authorObject) {
         System.out.println("calling createCategoryRecipe ==>");
         return bookService.createBookAuthor(bookId, authorObject);

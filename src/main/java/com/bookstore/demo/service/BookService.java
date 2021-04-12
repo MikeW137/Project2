@@ -77,15 +77,17 @@ public class BookService {
         }
     }
 
-    public Author getBookAuthor(@PathVariable(value = "bookId") Long bookId) {
-        System.out.println("service calling getBookAuthor ==>");
+    public List<Author> getBookAuthors(Long bookId) {
+        System.out.println("service calling getBookAuthors ==>");
         Optional<Book> book = bookRepository.findById(bookId);
-            if (book.isPresent()) {
-                return book.get().getAuthor();
-            } else {
-                throw new InformationNotFoundException("book with id " + bookId + " not found");
-            }
+        if (book.isPresent()) {
+            return book.get().getAuthorList();
+        } else {
+            throw new InformationNotFoundException("book with an id " + bookId + " not found");
+        }
     }
+
+
 
     public Author createBookAuthor(Long bookId, Author authorObject) {
         System.out.println("service calling createCategoryRecipe ==>");
