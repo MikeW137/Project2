@@ -2,7 +2,9 @@ package com.bookstore.demo.service;
 
 import com.bookstore.demo.exception.InformationExistException;
 import com.bookstore.demo.exception.InformationNotFoundException;
+import com.bookstore.demo.model.Author;
 import com.bookstore.demo.model.Book;
+import com.bookstore.demo.repository.AuthorRepository;
 import com.bookstore.demo.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,16 +12,24 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
 public class BookService {
     private BookRepository bookRepository;
+    private AuthorRepository authorRepository;
 
     @Autowired
     public void setBookRepository(BookRepository bookRepository) {
         this.bookRepository = bookRepository;
     }
+
+    @Autowired
+    public void setAuthorRepository(AuthorRepository authorRepository) {
+        this.authorRepository = authorRepository;
+    }
+
 
     public List<Book> getBooks() {
         System.out.println("service calling getBooks ==>");
@@ -63,6 +73,27 @@ public class BookService {
             bookRepository.deleteById(bookId);
             return book;
         } else {
+            throw new InformationNotFoundException("book with id " + bookId + " not found");
+        }
+    }
+
+    public Author getBookAuthor(@PathVariable(value = "bookId") Long bookId) {
+        System.out.println("service calling getBookAuthor ==>");
+        Optional<Book> book = bookRepository.findById(bookId);
+            if (book.isPresent()) {
+                return book.get().getAuthor();
+            } else {
+                throw new InformationNotFoundException("book with id " + bookId + " not found");
+            }
+    }
+
+    public Author createBookAuthor(Long bookId, Author authorObject) {
+        System.out.println("service calling createCategoryRecipe ==>");
+        try {
+            Optional book = bookRepository.findById(bookId);
+            authorObject.setBook((Book) book.get());
+            return authorRepository.save(authorObject);
+        } catch (NoSuchElementException e) {
             throw new InformationNotFoundException("book with id " + bookId + " not found");
         }
     }
