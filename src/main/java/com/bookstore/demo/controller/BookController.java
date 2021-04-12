@@ -151,7 +151,7 @@ public class BookController {
     @PostMapping("/books/{bookId}/publishers")
     public Publisher createBookPublisher(@PathVariable(value = "bookId") Long bookId, @RequestBody Publisher publisherObject) {
         System.out.println("calling createBookPublisher ==>");
-        return bookService.createBookGenre(bookId, publisherObject);
+        return bookService.createBookPublisher(bookId, publisherObject);
     }
 
 
