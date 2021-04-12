@@ -158,9 +158,9 @@ public class BookController {
     //Updating a Publisher for a Book
     //http://localhost:9090/api/books/1/publishers/1
     @PutMapping("/books/{bookId}/publishers/{publisherId}")
-    public Genre updateBookPublisher(@PathVariable Long bookId, @PathVariable Long pubisherId, @RequestBody Genre pubisherObject){
+    public Publisher updateBookPublisher(@PathVariable Long bookId, @PathVariable Long publisherId, @RequestBody Publisher publisherObject){
         System.out.println("calling updateBookGenre ==>");
-        return bookService.updateBookPublishers(bookId, pubisherId, pubisherObject);
+        return bookService.updateBookPublisher(bookId, publisherId, publisherObject);
     }
     //end
 }

@@ -194,16 +194,18 @@ public class BookService {
         }
     }
 
-    public Genre updateBookPublisher(Long bookId, Long publisherId, Publisher publisherObject){
+    public Publisher updateBookPublisher(Long bookId, Long publisherId, Publisher publisherObject){
         System.out.println("service calling updateBookPublishers ==>");
         try {
             Publisher publisher = (publisherRepository.findByBookId(bookId).stream().filter(p -> p.getId().equals(publisherId)).findFirst()).get();
-            genre.setName(genreObject.getName());
-            return genreRepository.save(genre);
+            publisher.setName(publisherObject.getName());
+            publisher.setLocation(publisherObject.getLocation());
+            return publisherRepository.save(publisher);
         } catch (NoSuchElementException e) {
-            throw new InformationNotFoundException("genre or book not found");
+            throw new InformationNotFoundException("publisher or book not found");
         }
     }
-    }
-
 }
+
+
+
