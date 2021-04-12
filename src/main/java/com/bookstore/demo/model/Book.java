@@ -27,6 +27,10 @@ public class Book {
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Genre> genreList;
 
+    @OneToMany(mappedBy = "book", orphanRemoval = true)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<Publisher> publisherList;
+
 
     public Book() {
     }
