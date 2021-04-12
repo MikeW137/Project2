@@ -59,7 +59,7 @@ public class BookService {
         }
     }
 
-    public Book updateBook(@PathVariable(value = "bookId") Long bookId, @RequestBody Book bookObject) {
+    public Book updateBook(Long bookId, Book bookObject) {
         System.out.println("service calling updateBook ==>");
         Optional<Book> book = bookRepository.findById(bookId);
         if (book.isPresent()) {
@@ -77,7 +77,7 @@ public class BookService {
         }
     }
 
-    public Optional<Book> deleteBook(@PathVariable(value = "bookId") Long bookId) {
+    public Optional<Book> deleteBook(Long bookId) {
         System.out.println("service calling deleteBook ==>");
         Optional<Book> book = bookRepository.findById(bookId);
 
@@ -153,7 +153,7 @@ public class BookService {
         }
     }
 
-    public Genre updateBookGenres(@PathVariable Long bookId, @PathVariable Long genreId, @RequestBody Genre genreObject){
+    public Genre updateBookGenres(Long bookId, Long genreId, Genre genreObject){
         System.out.println("service calling updateBookGenres ==>");
         try {
             Genre genre = (genreRepository.findByBookId(bookId).stream().filter(p -> p.getId().equals(genreId)).findFirst()).get();
@@ -194,4 +194,18 @@ public class BookService {
         }
     }
 
+    public Publisher updateBookPublisher(Long bookId, Long publisherId, Publisher publisherObject){
+        System.out.println("service calling updateBookPublishers ==>");
+        try {
+            Publisher publisher = (publisherRepository.findByBookId(bookId).stream().filter(p -> p.getId().equals(publisherId)).findFirst()).get();
+            publisher.setName(publisherObject.getName());
+            publisher.setLocation(publisherObject.getLocation());
+            return publisherRepository.save(publisher);
+        } catch (NoSuchElementException e) {
+            throw new InformationNotFoundException("publisher or book not found");
+        }
+    }
 }
+
+
+
