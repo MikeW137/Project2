@@ -23,4 +23,12 @@
 | PUT api/books/1/publishers/1 | Update a Single Publisher | PUBLIC |
 | DELETE api/books/1/publishers/1 | Delete a Single Publisher | PUBLIC |
 
-
+### Machineries used
+-Spring Boot Framework
+-IntelliJ IDEA/Java 11
+-Tomcat Server
+-Apache Maven 
+-Dev Profile
+-Postman
+-Postgresql
+-pgAdmin 4
