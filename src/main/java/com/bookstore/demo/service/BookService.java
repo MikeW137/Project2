@@ -39,6 +39,9 @@ public class BookService {
     @Autowired
     public void setGenreRepository(GenreRepository genreRepository) { this.genreRepository = genreRepository;}
 
+    @Autowired
+    public void setPublisherRepository(PublisherRepository publisherRepository) { this.publisherRepository = publisherRepository;}
+
 
     public List<Book> getBooks() {
         System.out.println("service calling getBooks ==>");
