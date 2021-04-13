@@ -25,7 +25,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 @SpringBootTest
 @WebMvcTest(BookController.class)
 public class ControllerIntegrationTests {
-
+    //This file tests the primary Book CRUD and all of the GET methods for the tables.
     @Autowired
     public MockMvc mockMvc;
 
@@ -64,18 +64,16 @@ public class ControllerIntegrationTests {
                                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON));
-
-
     }
 
-
-
-//        this.mockMvc.perform(delete(deleteUrl).accept(MediaType.APPLICATION_JSON))
-//                .andExpect(status().isOk())
-//                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON));
-
-
-
+    @Test
+    public void testDeleteMethod() throws Exception {
+        //Testing Delete Method for main table Book
+        //These are placeholder values for url
+        this.mockMvc.perform(delete("/api/books/3").accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON));
+    }
 }
 
 
