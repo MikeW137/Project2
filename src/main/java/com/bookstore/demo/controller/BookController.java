@@ -174,7 +174,7 @@ public class BookController {
         responseMessage.put("status", "publisher with id: " + publisherId + " was successfully deleted.");
         return new ResponseEntity<HashMap>(responseMessage, HttpStatus.OK);
     }
-    //pushing to mike
+
     //end
 }
 
