@@ -1,4 +1,15 @@
-# Project 2
+# Project 2 - BookAPI
+### Description
+
+A REST API for storing information about books
+
+### General Approach
+
+We chose to create three tables, which are all connected to a main table, called Book. Our approach was to create a standalone Book database with its own fields and then have the other fields populated by dependencies from the Author, Publisher, Genre tables. We split our code into business logic in the Service package and front-end mapping in the Controller package. We also created custom error messages contained within the Exception package, which are handling those cases. Our Repository package is using predefined methods from JPARepository interface. We also have our own custom methods, which aren’t included inside JPA. Our development process is going on inside a “dev” profile, defined in the Resource folder, which can be switched down the line.
+
+### Descriptions of any unsolved problems or major hurdles
+
+We didn’t experience any major obstacles during our base deliverable. We had small issues with the mapping of the tables, while trying to figure out how the XtoX mapping would be done between the Book, and the rest of the tables. We also had a time, where a typo in a wrapper class caused us to debug our code for some 15 minutes.
 
 ### ERD Diagram
 ![image](https://user-images.githubusercontent.com/7227339/114466739-7c7b4400-9bae-11eb-8087-0e3f1b19379e.png)
@@ -33,13 +44,19 @@
 - Postgresql
 - pgAdmin 4
 
-### General Approach
+### User Stories
+Our Users are primarily library, bookstore, book depot employees, or software testers and software novices trying to understand the Spring framework.
 
-We chose to create three tables, which are all connected to a main table, called Book. Our approach was to create a standalone Book database with its own fields and then have the other fields populated by dependencies from the Author, Publisher, Genre tables. We split our code into business logic in the Service package and front-end mapping in the Controller package. We also created custom error messages contained within the Exception package, which are handling those cases. Our Repository package is using predefined methods from JPARepository interface. We also have our own custom methods, which aren’t included inside JPA. Our development process is going on inside a “dev” profile, defined in the Resource folder, which can be switched down the line.
+User stories:
+- As an employee I want to access the database and check records for Book
+- As an employee I want to access the database and check records for Book and its Publisher, Genre, Author
+- As an employee I want to access the database and add a Book and its Publisher, Genre, Author. If there isn’t a known Author, Publisher or Genre I want them to be blank
+- As an employee, I want to be able to update the author, genre, or publisher record for a book.
+- As an employee, I want to be able to delete either the author, genre, or publisher record on a book.
+- As a novice software developer, I want to access the file structure and understand the backend logic easily.
+- As a novice software developer, I want to understand the additional installations and interfaces.
+- As a novice software developer, I want to use this RESTful API to test on a demo website page, using the different endpoints.
 
-### Descriptions of any unsolved problems or major hurdles
-
-We didn’t experience any major obstacles during our base deliverable. We had small issues with the mapping of the tables, while trying to figure out how the XtoX mapping would be done between the Book, and the rest of the tables. We also had a time, where a typo in a wrapper class caused us to debug our code for some 15 minutes.
 
 ### Dependencies
 The following dependencies are listed in the POM.xml file.
