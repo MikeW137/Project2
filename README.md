@@ -9,7 +9,7 @@ We chose to create three tables, which are all connected to a main table, called
 
 ### Descriptions of any unsolved problems or major hurdles
 
-We didn’t experience any major obstacles during our base deliverable. We had small issues with the mapping of the tables, while trying to figure out how the XtoX mapping would be done between the Book, and the rest of the tables. We also had a time, where a typo in a wrapper class caused us to debug our code for some 15 minutes. Another small hurdle was figuring out how the unit testing syntax works.
+We didn’t experience any major obstacles during our base deliverable. We had small issues with the mapping of the tables, while trying to figure out how the XtoX mapping would be done between the Book, and the rest of the tables. We also had a time, where a typo in a wrapper class caused us to debug our code for some 15 minutes.
 
 
 ### ERD Diagram
