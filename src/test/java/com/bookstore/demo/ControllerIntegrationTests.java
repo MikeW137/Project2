@@ -28,7 +28,10 @@ public class ControllerIntegrationTests {
     public MockMvc mockMvc;
 
     @Test
-    public void testCreateRetrieveWithMockMVC() throws Exception {
+    public void testGetMethodsForAll() throws Exception {
+        //This tests the Get Endpoints for all tables with hardcoded entries for the database
+        //So the user can test it without DB tool or Postman
+        //These are placeholder values for url and containsString
         this.mockMvc.perform(get("/api/books/")).andDo(print()).andExpect(status().isOk())
                 .andExpect(content().string(containsString("Book One")));
         this.mockMvc.perform(get("/api/books/2/authors")).andDo(print()).andExpect(status().isOk())
@@ -37,17 +40,31 @@ public class ControllerIntegrationTests {
                 .andExpect(content().string(containsString("Fiction")));
         this.mockMvc.perform(get("/api/books/2/publishers")).andDo(print()).andExpect(status().isOk())
                 .andExpect(content().string(containsString("PublisherOne")));
-
-
-        
-
     }
     @Test
-    public void testPostMethods() throws Exception {
+    public void testPostMethod() throws Exception {
+        //Testing Post Method for for main table Book
+        //These are placeholder values for url and content
         this.mockMvc.perform(post("/api/books").contentType(MediaType.APPLICATION_JSON)
                 .content("{\"title\":\"newBook\",\"description\":\"new book description\"}"))
                 .andExpect(status().isOk());
         }
+
+    @Test
+        //Testing Put Method for the main table Book
+        //These are placeholder values for url and content
+    public void testPutMethod() throws Exception {
+        this.mockMvc.perform(put("/api/books/3")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content("{\"title\":\"Book3\",\"description\":\"book3 description\"}")
+                                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON));
+
+
+
+    }
+
 
 
 //        this.mockMvc.perform(delete(deleteUrl).accept(MediaType.APPLICATION_JSON))
