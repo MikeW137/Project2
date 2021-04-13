@@ -32,3 +32,46 @@
 - Postman
 - Postgresql
 - pgAdmin 4
+
+
+### Dependencies
+The following dependencies are listed in the POM.xml file.
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <version>2.4.4</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
+
+You can reload project under maven options if dependencies don’t load properly on first download.
+![image](https://user-images.githubusercontent.com/7227339/114568739-03293300-9c3a-11eb-875e-096c82f199ab.png)
+
+
+
+For the database, we are using postgreSQL. For our file to work out of the box, create a database in postgreSQL and name it ‘bookstore’. If you have a different password for your postgres user, change it in application-dev.properties.
+![image](https://user-images.githubusercontent.com/7227339/114569211-64510680-9c3a-11eb-8765-9f9d7d0d8bad.png)
+
+
