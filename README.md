@@ -11,6 +11,7 @@ We chose to create three tables, which are all connected to a main table, called
 
 We didn’t experience any major obstacles during our base deliverable. We had small issues with the mapping of the tables, while trying to figure out how the XtoX mapping would be done between the Book, and the rest of the tables. We also had a time, where a typo in a wrapper class caused us to debug our code for some 15 minutes.
 
+
 ### ERD Diagram
 ![image](https://user-images.githubusercontent.com/7227339/114466739-7c7b4400-9bae-11eb-8087-0e3f1b19379e.png)
 
