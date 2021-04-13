@@ -64,7 +64,7 @@ public class ControllerIntegrationTests {
                                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON));
-        
+
 
     }
 
