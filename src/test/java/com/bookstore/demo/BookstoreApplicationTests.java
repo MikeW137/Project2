@@ -2,8 +2,12 @@ package com.bookstore.demo;
 
 import com.bookstore.demo.model.Author;
 import com.bookstore.demo.model.Book;
+import com.bookstore.demo.model.Genre;
+import com.bookstore.demo.model.Publisher;
 import com.bookstore.demo.repository.AuthorRepository;
 import com.bookstore.demo.repository.BookRepository;
+import com.bookstore.demo.repository.GenreRepository;
+import com.bookstore.demo.repository.PublisherRepository;
 import com.bookstore.demo.service.BookService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -20,6 +24,8 @@ class BookstoreApplicationTests {
 
     private BookRepository bookRepository;
     private AuthorRepository authorRepository;
+    private GenreRepository genreRepository;
+    private PublisherRepository publisherRepository;
     @Autowired
     public void setBookRepository(BookRepository bookRepository) {
         this.bookRepository = bookRepository;
@@ -28,6 +34,11 @@ class BookstoreApplicationTests {
     public void setAuthorRepository(AuthorRepository authorRepository) {
         this.authorRepository = authorRepository;
     }
+    @Autowired
+    public void setGenreRepository(GenreRepository genreRepository) { this.genreRepository = genreRepository;}
+
+    @Autowired
+    public void setPublisherRepository(PublisherRepository publisherRepository) { this.publisherRepository = publisherRepository;}
 
     @Test
     void contextLoads() {
@@ -47,5 +58,20 @@ class BookstoreApplicationTests {
         List<Author> found = authorRepository.findByBookId(1L);
         assertEquals(author.toString(), found.get(0).toString());
     }
+
+    @Test
+    public void testGetPublisher(){
+        Publisher publisher = new Publisher(2L, "PublisherOne", "Chicago", new Book(2L, "Book One", "Book One Description"));
+        List<Publisher> found = publisherRepository.findByBookId(2L);
+        assertEquals(publisher.toString(), found.get(0).toString());
+    }
+
+    @Test
+    public void testGetGenre() {
+        Genre genre = new Genre(2L, "Fiction");
+        List<Genre>  found = genreRepository.findByBookId(2L);
+        assertEquals(genre.toString(), found.get(0).toString());
+    }
+
 
 }
