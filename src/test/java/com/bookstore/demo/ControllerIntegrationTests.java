@@ -28,14 +28,15 @@ public class ControllerIntegrationTests {
 
     @Test
     public void testCreateRetrieveWithMockMVC() throws Exception {
-//        this.mockMvc.perform(post("/students")).andExpect(status().is2xxSuccessful());
         this.mockMvc.perform(get("/api/books/")).andDo(print()).andExpect(status().isOk())
                 .andExpect(content().string(containsString("Book One")));
         this.mockMvc.perform(get("/api/books/2/authors")).andDo(print()).andExpect(status().isOk())
                 .andExpect(content().string(containsString("Suresh")));
         this.mockMvc.perform(get("/api/books/2/genres")).andDo(print()).andExpect(status().isOk())
                 .andExpect(content().string(containsString("Fiction")));
-
+        this.mockMvc.perform(get("/api/books/2/publishers")).andDo(print()).andExpect(status().isOk())
+                .andExpect(content().string(containsString("PublisherOne")));
+        this.mockMvc.perform(post("/api/books")).andExpect(status().is2xxSuccessful());
 
     }
 
