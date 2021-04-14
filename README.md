@@ -138,6 +138,7 @@ For the database, we are using postgreSQL. For our file to work out of the box, 
 -----------------------------------------
 
 #### Testing
+
 We created unit and integrations tests with hardcoded test data.
 
 Basic unit tests of database in test/java/BookstoreApplicationTests.
