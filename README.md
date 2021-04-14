@@ -5,11 +5,11 @@ A REST API for storing information about books
 
 ### General Approach
 
-We chose to create three tables, which are all connected to a main table, called Book. Our approach was to create a standalone Book database with its own fields and then have the other fields populated by dependencies from the Author, Publisher, Genre tables. We split our code into business logic in the Service package and front-end mapping in the Controller package. We also created custom error messages contained within the Exception package, which are handling those cases. Our Repository package is using predefined methods from JPARepository interface. We also have our own custom methods, which aren’t included inside JPA. Our development process is going on inside a “dev” profile, defined in the Resource folder, which can be switched down the line.
+We chose to create three tables, which are all connected to a main table, called Book. Our approach was to create a standalone Book database with its own fields and then have the other fields populated by dependencies from the Author, Publisher, Genre tables. We split our code into business logic in the Service package and front-end mapping in the Controller package. We also created custom error messages contained within the Exception package, which are handling those cases. Our Repository package is using predefined methods from JPARepository interface. We also have our own custom methods, which aren’t included inside JPA. Our development process is going on inside a “dev” profile, defined in the Resource folder, which can be switched down the line. Our security feature was added later, as we have only two public endpoints, which are to register an user and login. After the login, our private endpoints can be modified. 
 
 ### Descriptions of any unsolved problems or major hurdles
 
-We didn’t experience any major obstacles during our base deliverable. We had small issues with the mapping of the tables, while trying to figure out how the XtoX mapping would be done between the Book, and the rest of the tables. We also had a time, where a typo in a wrapper class caused us to debug our code for some 15 minutes. Another small hurdle was figuring out how the unit testing syntax works.
+We didn’t experience any major obstacles during our base deliverable. We had small issues with the mapping of the tables, while trying to figure out how the XtoX mapping would be done between the Book, and the rest of the tables. We also had a time, where a typo in a wrapper class caused us to debug our code for some 15 minutes. Another small hurdle was figuring out how the unit testing syntax works. Later down the line we had to spend some time figuring out why our security features are locking us out of the endpoints, but we figured we were missing a line inside our logic.
 
 
 ### ERD Diagram
@@ -18,22 +18,28 @@ We didn’t experience any major obstacles during our base deliverable. We had s
 ### Endpoints
 | Endpoint | Functionality | Access |
 |---|----| --- |
-| GET /api/books | Get all Books | PUBLIC |
-| POST /api/books/1 | Creating a Single Book | PUBLIC |
-| PUT /api/books/1 | Updating Single Book | PUBLIC |
-| DELETE /api/books/1 | Delete Single Book | PUBLIC |
-| GET /api/books/1/authors | Get All Authors | PUBLIC |
-| POST /api/books/1/authors/1 | Get a Single Author | PUBLIC |
-| PUT /api/books/1/authors/1 | Update a Single Author | PUBLIC |
-| DELETE /api/books/1/authors/1 | Delete a Single Author | PUBLIC
-| GET api/books/1/genres | Get all Genres | PUBLIC |
-| POST api/books/1/genres/1 | Create a Single Genre | PUBLIC |
-| PUT api/books/1/genres/1 | Update a Single Genre | PUBLIC|
-| DELETE api/books/1/genres/1 | Delete a Single Genre | PUBLIC |
-| GET /api/books/1/publishers | Get all Publishers | PUBLIC |
-| POST /api/books/1/publishers/1 | Create a Single Publisher | PUBLIC |
-| PUT api/books/1/publishers/1 | Update a Single Publisher | PUBLIC |
-| DELETE api/books/1/publishers/1 | Delete a Single Publisher | PUBLIC |
+| POST /auth/users/register | Login user | PUBLIC |
+| POST /auth/users/register | Register an user | PUBLIC |
+| GET /api/books | Get all Books | PRIVATE |
+| POST /api/books/1 | Creating a Single Book | PRIVATE |
+| PUT /api/books/1 | Updating Single Book | PRIVATE |
+| DELETE /api/books/1 | Delete Single Book | PRIVATE |
+| GET /api/books/1/authors | Get All Authors | PRIVATE |
+| POST /api/books/1/authors/1 | Get a Single Author | PRIVATE |
+| PUT /api/books/1/authors/1 | Update a Single Author | PRIVATE |
+| DELETE /api/books/1/authors/1 | Delete a Single Author | PRIVATE | 
+| GET api/books/1/genres | Get all Genres | PRIVATE |
+| POST api/books/1/genres/1 | Create a Single Genre | PRIVATE |
+| PUT api/books/1/genres/1 | Update a Single Genre | PRIVATE |
+| DELETE api/books/1/genres/1 | Delete a Single Genre | PRIVATE |
+| GET /api/books/1/publishers | Get all Publishers | PRIVATE |
+| POST /api/books/1/publishers/1 | Create a Single Publisher | PRIVATE |
+| PUT api/books/1/publishers/1 | Update a Single Publisher | PRIVATE |
+| DELETE api/books/1/publishers/1 | Delete a Single Publisher | PRIVATE |
+
+
+
+
 
 ### Machineries used
 - Spring Boot Framework
@@ -72,8 +78,7 @@ The following dependencies are listed in the POM.xml file.
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-
-        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web -->
+        
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -89,9 +94,37 @@ The following dependencies are listed in the POM.xml file.
             <artifactId>postgresql</artifactId>
             <scope>runtime</scope>
         </dependency>
+        <!--these are for testing-->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- security dependency -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+
+        <!-- security token -->
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>0.9.1</version>
+        </dependency>
 
 
-You can reload project under maven options if dependencies don’t load properly on first download.
+You can reload the project under maven options if dependencies don’t load properly on first download.
 ![image](https://user-images.githubusercontent.com/7227339/114568739-03293300-9c3a-11eb-875e-096c82f199ab.png)
 
 

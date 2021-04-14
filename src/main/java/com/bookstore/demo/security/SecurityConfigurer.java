@@ -27,11 +27,6 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
     @Autowired
     private JwtRequestFilter jwtRequestFilter;
 
-
-    @Autowired
-    private JwtRequestFilter jwtRequestFilter;
-
-
     // step1
     /**
      * We use the PasswordEncoder that is defined in the Spring Security configuration to encode the password.
