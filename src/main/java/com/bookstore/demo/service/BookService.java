@@ -63,11 +63,13 @@ public class BookService {
 
     public Book createBook(Book bookObject) {
         System.out.println("service calling createBook ==>");
-
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
+                .getPrincipal();
         Book book = bookRepository.findByTitle(bookObject.getTitle());
         if (book != null) {
             throw new InformationExistException("Book with title " + book.getTitle() + " already exists");
         } else {
+            bookObject.setUser(userDetails.getUser());
             return bookRepository.save(bookObject);
         }
     }

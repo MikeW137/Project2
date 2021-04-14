@@ -13,6 +13,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.context.WebApplicationContext;
 
 // if @EnableWebSecurity not defined, then we're going to get an error with the PasswordEncoder
@@ -25,6 +26,9 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
     public void setMyUserDetailsService(MyUserDetailsService myUserDetailsService) {
         this.myUserDetailsService = myUserDetailsService;
     }
+
+    @Autowired
+    private JwtRequestFilter jwtRequestFilter;
 
     // step1
 
@@ -41,11 +45,12 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         // only allowed urls with out JWT
         http.authorizeRequests().antMatchers(
-                "/auth/users", "/auth/users/login", "/auth/users/register", "/api/books/").permitAll()
+                "/auth/users", "/auth/users/login", "/auth/users/register").permitAll()
                 .anyRequest().authenticated()
                 .and().sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and().csrf().disable();
+        http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
     }
 
     @Override
