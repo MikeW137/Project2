@@ -23,9 +23,9 @@ public class User {
     private String password;
 
     //user can have more than one Author
-    @OneToMany(mappedBy = "user")
-    @LazyCollection(LazyCollectionOption.FALSE)
-    private List<Author> authorList;
+//    @OneToMany(mappedBy = "user")
+//    @LazyCollection(LazyCollectionOption.FALSE)
+//    private List<Author> authorList;
 
     // user can have more than one Book
     @OneToMany(mappedBy = "user")
@@ -72,13 +72,13 @@ public class User {
         this.password = password;
     }
 
-    public List<Author> getAuthorList() {
-        return authorList;
-    }
-
-    public void setAuthorList(List<Author> authorList) {
-        this.authorList = authorList;
-    }
+//    public List<Author> getAuthorList() {
+//        return authorList;
+//    }
+//
+//    public void setAuthorList(List<Author> authorList) {
+//        this.authorList = authorList;
+//    }
 
     public List<Book> getBookList() {
         return bookList;

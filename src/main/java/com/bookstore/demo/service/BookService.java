@@ -10,7 +10,9 @@ import com.bookstore.demo.repository.AuthorRepository;
 import com.bookstore.demo.repository.BookRepository;
 import com.bookstore.demo.repository.GenreRepository;
 import com.bookstore.demo.repository.PublisherRepository;
+import com.bookstore.demo.security.MyUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -46,6 +48,17 @@ public class BookService {
     public List<Book> getBooks() {
         System.out.println("service calling getBooks ==>");
         return bookRepository.findAll();
+    }
+
+    public Book getBook(Long bookId) {
+        System.out.println("service getCategory ==>");
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Book book = bookRepository.findByIdAndUserId(bookId, userDetails.getUser().getId());
+        if (book == null) {
+            throw new InformationNotFoundException("category with id " + bookId + " not found");
+        } else {
+            return book;
+        }
     }
 
     public Book createBook(Book bookObject) {
