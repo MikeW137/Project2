@@ -76,6 +76,8 @@ public class BookService {
 
     public Book updateBook(Long bookId, Book bookObject) {
         System.out.println("service calling updateBook ==>");
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
+                .getPrincipal();
         Optional<Book> book = bookRepository.findById(bookId);
         if (book.isPresent()) {
             if (bookObject.getTitle().equals(book.get().getTitle())) {
@@ -83,6 +85,7 @@ public class BookService {
                 throw new InformationExistException("book " + book.get().getTitle() + " is already exists");
             } else {
                 Book updateBook = bookRepository.findById(bookId).get();
+                updateBook.setUser(userDetails.getUser());
                 updateBook.setTitle(bookObject.getTitle());
                 updateBook.setDescription(bookObject.getDescription());
                 return bookRepository.save(updateBook);
@@ -116,8 +119,11 @@ public class BookService {
 
     public Author createBookAuthor(Long bookId, Author authorObject) {
         System.out.println("service calling createBookAuthor ==>");
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
+                .getPrincipal();
         try {
             Optional book = bookRepository.findById(bookId);
+            authorObject.setUser(userDetails.getUser());
             authorObject.setBook((Book) book.get());
             return authorRepository.save(authorObject);
         } catch (NoSuchElementException e) {
@@ -127,8 +133,11 @@ public class BookService {
 
     public Author updateBookAuthor(Long bookId, Long authorId, Author authorObject) {
         System.out.println("service calling updateBookAuthor ==>");
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
+                .getPrincipal();
         try {
             Author author = (authorRepository.findByBookId(bookId).stream().filter(p -> p.getId().equals(authorId)).findFirst()).get();
+            author.setUser(userDetails.getUser());
             author.setName(authorObject.getName());
             author.setNationality(authorObject.getNationality());
             author.setAge(authorObject.getAge());
@@ -159,6 +168,8 @@ public class BookService {
 
     public Genre createBookGenre(Long bookId, Genre genreObject) {
         System.out.println("service calling create ==>");
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
+                .getPrincipal();
         try {
             Optional book = bookRepository.findById(bookId);
             genreObject.setBook((Book) book.get());
@@ -170,8 +181,11 @@ public class BookService {
 
     public Genre updateBookGenres(Long bookId, Long genreId, Genre genreObject){
         System.out.println("service calling updateBookGenres ==>");
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
+                .getPrincipal();
         try {
             Genre genre = (genreRepository.findByBookId(bookId).stream().filter(p -> p.getId().equals(genreId)).findFirst()).get();
+            genre.setUser(userDetails.getUser());
             genre.setName(genreObject.getName());
             return genreRepository.save(genre);
         } catch (NoSuchElementException e) {
@@ -200,8 +214,11 @@ public class BookService {
 
     public Publisher createBookPublisher(Long bookId, Publisher publisherObject) {
         System.out.println("service calling createBookPublisher ==>");
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
+                .getPrincipal();
         try {
             Optional book = bookRepository.findById(bookId);
+            publisherObject.setUser(userDetails.getUser());
             publisherObject.setBook((Book) book.get());
             return publisherRepository.save(publisherObject);
         } catch (NoSuchElementException e) {
@@ -211,8 +228,11 @@ public class BookService {
 
     public Publisher updateBookPublisher(Long bookId, Long publisherId, Publisher publisherObject){
         System.out.println("service calling updateBookPublishers ==>");
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
+                .getPrincipal();
         try {
             Publisher publisher = (publisherRepository.findByBookId(bookId).stream().filter(p -> p.getId().equals(publisherId)).findFirst()).get();
+            publisher.setUser(userDetails.getUser());
             publisher.setName(publisherObject.getName());
             publisher.setLocation(publisherObject.getLocation());
             return publisherRepository.save(publisher);
