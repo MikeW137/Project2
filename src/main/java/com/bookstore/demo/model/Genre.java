@@ -23,6 +23,12 @@ public class Genre {
     private Book book;
 
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    @JsonIgnore
+    private User user;
+
+
     public Genre() {
     }
 
@@ -61,5 +67,13 @@ public class Genre {
 
     public void setBook(Book book) {
         this.book = book;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
