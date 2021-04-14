@@ -45,6 +45,13 @@ public class BookController {
         System.out.println("calling getBooks ==>");
         return bookService.getBooks();
     }
+
+    @GetMapping(path = "/books/{bookId}")
+    public Book getBook(@PathVariable Long bookId) {
+        System.out.println("calling getCategory ==>");
+        return bookService.getBook(bookId);
+    }
+
     //Create a book
     // http://localhost:9090/api/books/
     @PostMapping(path = "/books")
