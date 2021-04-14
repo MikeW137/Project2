@@ -159,6 +159,13 @@ Example:
 ### Security
 All of the endpoints are secured under private access with the JWT framework. The only two public endpoints are “register” and “login” as listed in the endpoints graph. In order to access those, first an user needs to be registered and then logged in. Then they can use their custom Bearer Token to access and modify the database. 
 
+### Installation 
+1. Fork and clone the repository.
+2. Use Postgres or any other DB manager to create a database called “bookstore”
+3. Open src/main/resources/application-dev.properties and add your username/password if applicable. You can change the default port from 9090 to any of your choosing. 
+4. Run the application. Type localhost:9090/helloworld and that should be an indication if the application is working. Then you can access the public endpoints for register/login
+
+
 
 
 
