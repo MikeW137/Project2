@@ -5,11 +5,11 @@ A REST API for storing information about books
 
 ### General Approach
 
-We chose to create three tables, which are all connected to a main table, called Book. Our approach was to create a standalone Book database with its own fields and then have the other fields populated by dependencies from the Author, Publisher, Genre tables. We split our code into business logic in the Service package and front-end mapping in the Controller package. We also created custom error messages contained within the Exception package, which are handling those cases. Our Repository package is using predefined methods from JPARepository interface. We also have our own custom methods, which aren’t included inside JPA. Our development process is going on inside a “dev” profile, defined in the Resource folder, which can be switched down the line.
+We chose to create three tables, which are all connected to a main table, called Book. Our approach was to create a standalone Book database with its own fields and then have the other fields populated by dependencies from the Author, Publisher, Genre tables. We split our code into business logic in the Service package and front-end mapping in the Controller package. We also created custom error messages contained within the Exception package, which are handling those cases. Our Repository package is using predefined methods from JPARepository interface. We also have our own custom methods, which aren’t included inside JPA. Our development process is going on inside a “dev” profile, defined in the Resource folder, which can be switched down the line. Our security feature was added later, as we have only two public endpoints, which are to register an user and login. After the login, our private endpoints can be modified. 
 
 ### Descriptions of any unsolved problems or major hurdles
 
-We didn’t experience any major obstacles during our base deliverable. We had small issues with the mapping of the tables, while trying to figure out how the XtoX mapping would be done between the Book, and the rest of the tables. We also had a time, where a typo in a wrapper class caused us to debug our code for some 15 minutes. Another small hurdle was figuring out how the unit testing syntax works.
+We didn’t experience any major obstacles during our base deliverable. We had small issues with the mapping of the tables, while trying to figure out how the XtoX mapping would be done between the Book, and the rest of the tables. We also had a time, where a typo in a wrapper class caused us to debug our code for some 15 minutes. Another small hurdle was figuring out how the unit testing syntax works. Later down the line we had to spend some time figuring out why our security features are locking us out of the endpoints, but we figured we were missing a line inside our logic.
 
 
 ### ERD Diagram
@@ -124,7 +124,7 @@ The following dependencies are listed in the POM.xml file.
         </dependency>
 
 
-You can reload project under maven options if dependencies don’t load properly on first download.
+You can reload the project under maven options if dependencies don’t load properly on first download.
 ![image](https://user-images.githubusercontent.com/7227339/114568739-03293300-9c3a-11eb-875e-096c82f199ab.png)
 
 
