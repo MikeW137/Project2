@@ -27,6 +27,11 @@ public class Author {
     @JoinColumn(name = "book_id")
     private Book book;
 
+    //Many authors can have 1 user
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    @JsonIgnore
+    private User user;
 
     public Author() {
     }
@@ -89,5 +94,13 @@ public class Author {
                 ", age=" + age +
                 ", book=" + book +
                 '}';
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
