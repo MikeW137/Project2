@@ -55,24 +55,36 @@ public class BookController {
     //Create a book
     // http://localhost:9090/api/books/
     @PostMapping(path = "/books")
-    public Book createBook(@RequestBody Book bookObject) {
+    public ResponseEntity<HashMap> createBook(@RequestBody Book bookObject) {
         System.out.println("calling createBook ==>");
-        return bookService.createBook(bookObject);
+        bookService.createBook(bookObject);
+        HashMap responseMessage = new HashMap();
+        responseMessage.put("status", "book with id: " + bookObject.getId() + " was successfully added.");
+        responseMessage.put("result", bookObject);
+        return new ResponseEntity<HashMap>(responseMessage, HttpStatus.OK);
+
     }
     //Updating a book
     // http://localhost:9090/api/books/1
     @PutMapping("/books/{bookId}")
-    public Book updateBook(@PathVariable(value = "bookId") Long bookId, @RequestBody Book bookObject) {
+    public ResponseEntity<HashMap> updateBook(@PathVariable(value = "bookId") Long bookId, @RequestBody Book bookObject) {
         System.out.println("calling updateBook ==>");
-        return bookService.updateBook(bookId, bookObject);
+        bookService.updateBook(bookId, bookObject);
+        HashMap responseMessage = new HashMap();
+        responseMessage.put("status", "book with id: " + bookObject.getId() + " was successfully updated.");
+        responseMessage.put("result", bookObject);
+        return new ResponseEntity<HashMap>(responseMessage, HttpStatus.OK);
     }
 
     //Deleting a book
     // http://localhost:9090/api/books/1
     @DeleteMapping("/books/{bookId}")
-    public Optional<Book> deleteBook(@PathVariable(value = "bookId") Long bookId) {
+    public ResponseEntity<HashMap> deleteBook(@PathVariable(value = "bookId") Long bookId) {
         System.out.println("calling deleteBook ==>");
-        return bookService.deleteBook(bookId);
+        bookService.deleteBook(bookId);
+        HashMap responseMessage = new HashMap();
+        responseMessage.put("status", "book with id: " + bookId + " was successfully deleted.");
+        return new ResponseEntity<HashMap>(responseMessage, HttpStatus.OK);
     }
 
     //Get Authors from Books
@@ -85,18 +97,26 @@ public class BookController {
 
     //Add Book author in Books
     @PostMapping("/books/{bookId}/authors")
-    public Author createBookAuthor(@PathVariable(value = "bookId") Long bookId, @RequestBody Author authorObject) {
+    public ResponseEntity<HashMap> createBookAuthor(@PathVariable(value = "bookId") Long bookId, @RequestBody Author authorObject) {
         System.out.println("calling createBookAutho ==>");
-        return bookService.createBookAuthor(bookId, authorObject);
+        bookService.createBookAuthor(bookId, authorObject);
+        HashMap responseMessage = new HashMap();
+        responseMessage.put("status", "author with id: " + authorObject.getId() + " was successfully added.");
+        responseMessage.put("result", bookService.getBookAuthors(bookId));
+        return new ResponseEntity<HashMap>(responseMessage, HttpStatus.OK);
     }
 
     //Updating an Author
 
     //http://localhost:9090/api/books/1/authors/1
     @PutMapping("/books/{bookId}/authors/{authorId}")
-    public Author updateBookAuthor(@PathVariable Long bookId, @PathVariable Long authorId, @RequestBody Author authorObject){
+    public ResponseEntity<HashMap> updateBookAuthor(@PathVariable Long bookId, @PathVariable Long authorId, @RequestBody Author authorObject){
         System.out.println("calling updateBookAuthor ==>");
-        return bookService.updateBookAuthor(bookId, authorId, authorObject);
+        bookService.updateBookAuthor(bookId, authorId, authorObject);
+        HashMap responseMessage = new HashMap();
+        responseMessage.put("status", "author with id: " + authorId + " was successfully updated.");
+        responseMessage.put("result", bookService.getBookAuthors(bookId));
+        return new ResponseEntity<HashMap>(responseMessage, HttpStatus.OK);
     }
 
     //Delete an Author
@@ -121,17 +141,25 @@ public class BookController {
     //Adding genre to a Book
     //http://localhost:9090/api/books/1/genres
     @PostMapping("/books/{bookId}/genres")
-    public Genre createBookGenre(@PathVariable(value = "bookId") Long bookId, @RequestBody Genre genreObject) {
+    public ResponseEntity<HashMap> createBookGenre(@PathVariable(value = "bookId") Long bookId, @RequestBody Genre genreObject) {
         System.out.println("calling createBookGenre ==>");
-        return bookService.createBookGenre(bookId, genreObject);
+        bookService.createBookGenre(bookId, genreObject);
+        HashMap responseMessage = new HashMap();
+        responseMessage.put("status", "genre with id: " + genreObject.getId() + " was successfully deleted.");
+        responseMessage.put("result", bookService.getBookGenres(bookId));
+        return new ResponseEntity<HashMap>(responseMessage, HttpStatus.OK);
     }
 
     //Updating a Genre for a Book
     //http://localhost:9090/api/books/1/genres/1
     @PutMapping("/books/{bookId}/genres/{genreId}")
-    public Genre updateBookGenres(@PathVariable Long bookId, @PathVariable Long genreId, @RequestBody Genre genreObject){
+    public ResponseEntity<HashMap> updateBookGenres(@PathVariable Long bookId, @PathVariable Long genreId, @RequestBody Genre genreObject){
         System.out.println("calling updateBookGenre ==>");
-        return bookService.updateBookGenres(bookId, genreId, genreObject);
+        bookService.updateBookGenres(bookId, genreId, genreObject);
+        HashMap responseMessage = new HashMap();
+        responseMessage.put("status", "genre with id: " + genreId + " was successfully updated.");
+        responseMessage.put("result", bookService.getBookGenres(bookId));
+        return new ResponseEntity<HashMap>(responseMessage, HttpStatus.OK);
     }
 
     //Deleting a Genre in a Book
@@ -156,18 +184,26 @@ public class BookController {
     //Adding a Publisher to a Book
     //http://localhost:9090/api/books/1/publishers
     @PostMapping("/books/{bookId}/publishers")
-    public Publisher createBookPublisher(@PathVariable(value = "bookId") Long bookId, @RequestBody Publisher publisherObject) {
+    public ResponseEntity<HashMap> createBookPublisher(@PathVariable(value = "bookId") Long bookId, @RequestBody Publisher publisherObject) {
         System.out.println("calling createBookPublisher ==>");
-        return bookService.createBookPublisher(bookId, publisherObject);
+        bookService.createBookPublisher(bookId, publisherObject);
+        HashMap responseMessage = new HashMap();
+        responseMessage.put("status", "publisher with id: " + publisherObject.getId() + " was successfully created.");
+        responseMessage.put("result", bookService.getBookPublishers(bookId));
+        return new ResponseEntity<HashMap>(responseMessage, HttpStatus.OK);
     }
 
 
     //Updating a Publisher for a Book
     //http://localhost:9090/api/books/1/publishers/1
     @PutMapping("/books/{bookId}/publishers/{publisherId}")
-    public Publisher updateBookPublisher(@PathVariable Long bookId, @PathVariable Long publisherId, @RequestBody Publisher publisherObject){
+    public ResponseEntity<HashMap> updateBookPublisher(@PathVariable Long bookId, @PathVariable Long publisherId, @RequestBody Publisher publisherObject){
         System.out.println("calling updateBookGenre ==>");
-        return bookService.updateBookPublisher(bookId, publisherId, publisherObject);
+        bookService.updateBookPublisher(bookId, publisherId, publisherObject);
+        HashMap responseMessage = new HashMap();
+        responseMessage.put("status", "publisher with id: " + publisherId + " was successfully updated.");
+        responseMessage.put("result", bookService.getBookPublishers(bookId));
+        return new ResponseEntity<HashMap>(responseMessage, HttpStatus.OK);
     }
 
     //Deleting a Publisher in a Book
