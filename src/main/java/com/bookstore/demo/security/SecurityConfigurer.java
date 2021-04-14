@@ -23,8 +23,15 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
     public void setMyUserDetailsService(MyUserDetailsService myUserDetailsService) {
         this.myUserDetailsService = myUserDetailsService;
     }
+
     @Autowired
     private JwtRequestFilter jwtRequestFilter;
+
+
+    @Autowired
+    private JwtRequestFilter jwtRequestFilter;
+
+
     // step1
     /**
      * We use the PasswordEncoder that is defined in the Spring Security configuration to encode the password.
