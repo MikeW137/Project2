@@ -18,22 +18,28 @@ We didn’t experience any major obstacles during our base deliverable. We had s
 ### Endpoints
 | Endpoint | Functionality | Access |
 |---|----| --- |
-| GET /api/books | Get all Books | PUBLIC |
-| POST /api/books/1 | Creating a Single Book | PUBLIC |
-| PUT /api/books/1 | Updating Single Book | PUBLIC |
-| DELETE /api/books/1 | Delete Single Book | PUBLIC |
-| GET /api/books/1/authors | Get All Authors | PUBLIC |
-| POST /api/books/1/authors/1 | Get a Single Author | PUBLIC |
-| PUT /api/books/1/authors/1 | Update a Single Author | PUBLIC |
-| DELETE /api/books/1/authors/1 | Delete a Single Author | PUBLIC
-| GET api/books/1/genres | Get all Genres | PUBLIC |
-| POST api/books/1/genres/1 | Create a Single Genre | PUBLIC |
-| PUT api/books/1/genres/1 | Update a Single Genre | PUBLIC|
-| DELETE api/books/1/genres/1 | Delete a Single Genre | PUBLIC |
-| GET /api/books/1/publishers | Get all Publishers | PUBLIC |
-| POST /api/books/1/publishers/1 | Create a Single Publisher | PUBLIC |
-| PUT api/books/1/publishers/1 | Update a Single Publisher | PUBLIC |
-| DELETE api/books/1/publishers/1 | Delete a Single Publisher | PUBLIC |
+| POST /auth/users/register | Login user | PUBLIC |
+| POST /auth/users/register | Register an user | PUBLIC |
+| GET /api/books | Get all Books | PRIVATE |
+| POST /api/books/1 | Creating a Single Book | PRIVATE |
+| PUT /api/books/1 | Updating Single Book | PRIVATE |
+| DELETE /api/books/1 | Delete Single Book | PRIVATE |
+| GET /api/books/1/authors | Get All Authors | PRIVATE |
+| POST /api/books/1/authors/1 | Get a Single Author | PRIVATE |
+| PUT /api/books/1/authors/1 | Update a Single Author | PRIVATE |
+| DELETE /api/books/1/authors/1 | Delete a Single Author | PRIVATE | 
+| GET api/books/1/genres | Get all Genres | PRIVATE |
+| POST api/books/1/genres/1 | Create a Single Genre | PRIVATE |
+| PUT api/books/1/genres/1 | Update a Single Genre | PRIVATE |
+| DELETE api/books/1/genres/1 | Delete a Single Genre | PRIVATE |
+| GET /api/books/1/publishers | Get all Publishers | PRIVATE |
+| POST /api/books/1/publishers/1 | Create a Single Publisher | PRIVATE |
+| PUT api/books/1/publishers/1 | Update a Single Publisher | PRIVATE |
+| DELETE api/books/1/publishers/1 | Delete a Single Publisher | PRIVATE |
+
+
+
+
 
 ### Machineries used
 - Spring Boot Framework
