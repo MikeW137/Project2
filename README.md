@@ -135,6 +135,7 @@ For the database, we are using postgreSQL. For our file to work out of the box, 
 
 
 ### Additional Features:
+-----------------------------------------
 
 #### Testing
 We created unit and integrations tests with hardcoded test data.
@@ -147,4 +148,16 @@ Controller integration tests of the endpoints and CRUD methods in test/java/Cont
 We tested all of the GET methods in the API alongside the CRUD for the main table Book. We also tested post, put, and delete methods for the book endpoint
 
 ![image](https://user-images.githubusercontent.com/7227339/114614166-d12fc500-9c69-11eb-8484-bcc607f421df.png)
+
+### Custom Messages
+-Controller has custom response messages using ResponseEntity<HashMap> to have better user experience, when performing CRUD operations. 
+Example:
+
+![image](https://user-images.githubusercontent.com/49173138/114773623-e6bdf100-9d34-11eb-9049-bde255802b21.png)
+
+### Security
+All of the endpoints are secured under private access with the JWT framework. The only two public endpoints are “register” and “login” as listed in the endpoints graph. In order to access those, first an user needs to be registered and then logged in. Then they can use their custom Bearer Token to access and modify the database. 
+
+
+
 
