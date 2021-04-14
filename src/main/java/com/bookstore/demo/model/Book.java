@@ -31,6 +31,12 @@ public class Book {
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Publisher> publisherList;
 
+    //Many Books can have one user
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    @JsonIgnore
+    private User user;
+
 
     public Book() {
     }
@@ -86,4 +92,12 @@ public class Book {
     public List<Publisher> getPublisherList() { return publisherList; }
 
     public void setPublisherList(List<Publisher> publisherList) { this.publisherList = publisherList; }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }
