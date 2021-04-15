@@ -104,7 +104,7 @@ For the database, we are using postgreSQL. For our file to work out of the box, 
 ### Additional Features:
 
 #### Testing
-We created unit and integrations tests with hardcoded test data.
+We created unit and integrations tests with hardcoded test data. The file testDataQuery.sql has the hardcoded test data for the our tests, but they can be changed inside the BookstoreApplicationTests.class and ControllerIntegrationTests.class
 
 Basic unit tests of database in test/java/BookstoreApplicationTests.
 We connected to the database through the repository classes and created Book, Author, Genre, and publisher objects to test against the database entries. 
@@ -114,4 +114,5 @@ Controller integration tests of the endpoints and CRUD methods in test/java/Cont
 We tested all of the GET methods in the API alongside the CRUD for the main table Book. We also tested post, put, and delete methods for the book endpoint
 
 ![image](https://user-images.githubusercontent.com/7227339/114614166-d12fc500-9c69-11eb-8484-bcc607f421df.png)
+
 
