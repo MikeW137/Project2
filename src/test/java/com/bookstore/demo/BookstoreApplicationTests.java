@@ -54,22 +54,22 @@ class BookstoreApplicationTests {
 
     @Test
     public void testGetAuthor(){
-        Author author = new Author(2L, "Marc", "USA", 32, new Book(1L, "Book One", "Book One Description"));
+        Author author = new Author(1L, "Marc", "USA", 32, new Book(1L, "Book One", "Book One Description"));
         List<Author> found = authorRepository.findByBookId(1L);
         assertEquals(author.toString(), found.get(0).toString());
     }
 
     @Test
     public void testGetPublisher(){
-        Publisher publisher = new Publisher(2L, "PublisherOne", "Chicago", new Book(2L, "Book One", "Book One Description"));
-        List<Publisher> found = publisherRepository.findByBookId(2L);
+        Publisher publisher = new Publisher(1L, "PublisherOne", "Chicago", new Book(1L, "Book One", "Book One Description"));
+        List<Publisher> found = publisherRepository.findByBookId(1L);
         assertEquals(publisher.toString(), found.get(0).toString());
     }
 
     @Test
     public void testGetGenre() {
-        Genre genre = new Genre(2L, "Fiction");
-        List<Genre>  found = genreRepository.findByBookId(2L);
+        Genre genre = new Genre(1L, "Fiction");
+        List<Genre>  found = genreRepository.findByBookId(1L);
         assertEquals(genre.toString(), found.get(0).toString());
     }
 
