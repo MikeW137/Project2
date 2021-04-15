@@ -13,7 +13,8 @@ We didn’t experience any major obstacles during our base deliverable. We had s
 
 
 ### ERD Diagram
-![image](https://user-images.githubusercontent.com/7227339/114466739-7c7b4400-9bae-11eb-8087-0e3f1b19379e.png)
+![image](https://user-images.githubusercontent.com/7227339/114786237-65ba2600-9d43-11eb-8dcb-97a78a8fa2d9.png)
+
 
 ### Endpoints
 | Endpoint | Functionality | Access |
