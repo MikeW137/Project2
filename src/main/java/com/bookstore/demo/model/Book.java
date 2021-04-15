@@ -1,11 +1,14 @@
 package com.bookstore.demo.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name="books")
@@ -36,7 +39,6 @@ public class Book {
     @JoinColumn(name = "user_id")
     @JsonIgnore
     private User user;
-
 
     public Book() {
     }

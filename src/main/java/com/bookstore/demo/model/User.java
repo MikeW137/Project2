@@ -22,11 +22,6 @@ public class User {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
-    //user can have more than one Author
-//    @OneToMany(mappedBy = "user")
-//    @LazyCollection(LazyCollectionOption.FALSE)
-//    private List<Author> authorList;
-
     // user can have more than one Book
     @OneToMany(mappedBy = "user")
     @LazyCollection(LazyCollectionOption.FALSE)
@@ -71,14 +66,6 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
-
-//    public List<Author> getAuthorList() {
-//        return authorList;
-//    }
-//
-//    public void setAuthorList(List<Author> authorList) {
-//        this.authorList = authorList;
-//    }
 
     public List<Book> getBookList() {
         return bookList;
