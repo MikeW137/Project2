@@ -23,7 +23,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@WebMvcTest(BookController.class)
+@AutoConfigureMockMvc
 public class ControllerIntegrationTests {
     //This file tests the primary Book CRUD and all of the GET methods for the tables.
     @Autowired
