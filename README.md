@@ -13,7 +13,8 @@ We didn’t experience any major obstacles during our base deliverable. We had s
 
 
 ### ERD Diagram
-![image](https://user-images.githubusercontent.com/7227339/114786237-65ba2600-9d43-11eb-8dcb-97a78a8fa2d9.png)
+![image](https://user-images.githubusercontent.com/7227339/115057118-45a47700-9ea9-11eb-95ca-86aeff6630db.png)
+
 
 
 ### Endpoints
