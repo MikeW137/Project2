@@ -1,7 +1,7 @@
 # Project 2 - BookAPI
 ### Description
 
-A REST API for storing information about books
+A REST API for storing information about books. This is the base version, which performs public CRUD operations. You can check version 2 with security and User capibilities in our "version2" branch.
 
 ### General Approach
 
@@ -116,5 +116,12 @@ Controller integration tests of the endpoints and CRUD methods in test/java/Cont
 We tested all of the GET methods in the API alongside the CRUD for the main table Book. We also tested post, put, and delete methods for the book endpoint
 
 ![image](https://user-images.githubusercontent.com/7227339/114614166-d12fc500-9c69-11eb-8484-bcc607f421df.png)
+
+### Installation
+- Fork and clone the repository.
+- Use Postgres or any other DB manager to create a database called “bookstore”
+- Open src/main/resources/application-dev.properties and add your username/password if applicable. You can change the default port from 9090 to any of your choosing.
+- Run the application. Type localhost:9090/helloworld and that should be an indication if the application is working. Use Postman or any other similar program to perform CRUD with the endpoints in the Endpoint tables
+
 
 
